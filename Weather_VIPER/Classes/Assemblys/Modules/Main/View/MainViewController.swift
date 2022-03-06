@@ -43,8 +43,14 @@ struct WeatherData: Codable{
 }
 
 
+class SavedWeatherData: Object {
+    @objc dynamic var cityName: String? = ""
+    @objc dynamic var iconName: String? = ""
+    @objc dynamic var temperature: String? = ""
+    @objc dynamic var weatherDescription: String? = ""
+}
 
-
+let realm = try! Realm()
 
 
 class MainViewController: UIViewController, MainViewInput {
@@ -70,36 +76,46 @@ class MainViewController: UIViewController, MainViewInput {
         super.viewDidLoad()
         //output.viewDidLoad()
         initialize()
-        startLocationManager()
+        start()
     }
-    
-    
+        func start() {
+            let queue = DispatchQueue(label: "Monitor")
+            monitor.start(queue: queue)
+                    monitor.pathUpdateHandler = {path in
+                        DispatchQueue.main.async {
+            if path.status == .satisfied{
+                self.startLocationManager()
+                }
+                       else{
+                           self.getData()
+                       }
+                        }
+                    }
+        }
     func getData(){
-//        guard let data = realm.objects(SavedData.self).last else {return}
-//        cityName.text = data.city
-//        iconName.image = UIImage(named: data.icon)
-//        tempLabel.text = data.temp
-//        weatherDescription.text = data.descr
-//        print(data.city)
-//        print(data.temp)
-//        print(data.descr)
+        let dataSet = realm.objects(SavedWeatherData.self)
+        for data in dataSet {
+            cityName.text = data.cityName
+            weatherIcon.image = UIImage(named: data.iconName!)
+            temperatureLabel.text = data.temperature
+            weatherDescription.text = data.weatherDescription
+        }
     }
     
     func setData(){
-       
-//        try! realm.write{
-//            //models.icon = weatherData.weather[0].icon
-//            models.temp = tempLabel.text!
-//            models.city = cityName.text!
-//            models.descr = weatherDescription.text!
-//            realm.add(models)
-//            //print(models.city)
-//        }
-//        print("Data setting")
-//        print(models.icon)
-//        print(models.temp)
-//        print(models.city)
-//        print(models.descr)
+        let data = SavedWeatherData()
+        
+        
+        try! realm.write{
+            data.cityName = cityName.text
+            data.iconName = weatherData.weather[0].icon
+            data.temperature = temperatureLabel.text
+            data.weatherDescription = weatherDescription.text
+            realm.add(data)
+        }
+        
+        //try! realm.commitWrite()
+        
     }
     
     
@@ -140,11 +156,11 @@ class MainViewController: UIViewController, MainViewInput {
         weatherDescription.text = DataSource.weatherIDs[weatherData.weather[0].id]
         temperatureLabel.text = Int(round(weatherData.main.temp)).description + "º"
         weatherIcon.image = UIImage(named: weatherData.weather[0].icon)
-        //setData()
         
 }
     func rightCity(){
         cityName.text = rightData[0].local_names.ru
+        setData()
     }
     func correctCity(latitude: Double, longtitude: Double){
         let session = URLSession.shared
