@@ -20,16 +20,21 @@ protocol MainModuleOutput: ModuleOutput {
 
 // View Input
 protocol MainViewInput: AnyObject {
-    func set(title: String)
+    func set(weatherData: WeatherData)
 }
 
 // View Output
 protocol MainViewOutput: AnyObject {
-    func viewDidLoad()
+    //var currentCoordinate: Coordinate {get}
+    func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void)
+    
 }
 
 // Interactor
 protocol MainInteractorInput {
+    func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void, saveData: @escaping () -> Void)
+//    var currentCoordinate: Coordinate {get}
+    //var currentWeather: EncodeWeatherData {get}
 
 }
 

@@ -9,7 +9,43 @@
 import Foundation
 
 class MainInteractor: MainInteractorInput {
-
+//    var currentCoordinate: Coordinate {
+//        locationService.getCoordinate()
+//    }
+    
+//    var currentWeather: EncodeWeatherData {
+//            weatherDataService.getWeatherData(coordinate: currentCoordinate)
+//        }
+    
+    let weatherDataService: WeatherDataServiceType
+    let locationService: LocationServiceType
+    let storageService: StorageServiceType
+    
+    init(locationService: LocationServiceType, weatherDataService: WeatherDataServiceType, storageService: StorageServiceType){
+        self.locationService = locationService
+        self.weatherDataService = weatherDataService
+        self.storageService = storageService
+    }
+    
+    func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void,  saveData: @escaping () -> Void) {
+        print ("interactor get request and send it to services")
+        locationService.getCoordinate { c in
+            print("to weatherdataservice")
+            self.weatherDataService.getWeatherData(coordinate: c) { weatherData in
+                print("to storage")
+            self.storageService.saveWeatherData(weatherData: weatherData) {
+                    saveData()
+                }
+                updateUI(weatherData)
+                
+            }
+        }
+        print ("interactor send responce")
+    }
+    
+//    func getWeatherData(coordinate: Coordinate) {
+//
+//    }
 }
 
 // MARK: - Private

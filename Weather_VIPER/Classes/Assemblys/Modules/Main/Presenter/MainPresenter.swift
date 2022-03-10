@@ -25,7 +25,23 @@ extension MainPresenter: MainModuleInput {
 
 // MARK: View Output
 extension MainPresenter: MainViewOutput {
-    func viewDidLoad() {
-        view?.set(title: "Main")
+//    var currentCoordinate: Coordinate {
+//        interactor.currentCoordinate
+//    }
+    
+//    var currentWeather: DecodeWeatherData {
+//        interactor.currentWeather
+//    }
+    
+    func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void) {
+        print ("presenter get request and send to interactor")
+        interactor.viewDidLoad { b in
+            updateUI(b)
+            print ("presenter send responce")
+        } saveData: {
+            
+        }
+
+        }
     }
-}
+

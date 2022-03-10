@@ -27,6 +27,9 @@ class AppDelegate: AppDelegateManager {
         // Setup Services
         container.apply(AppConfigServiceAssembly.self)
         container.apply(EnvironmentServiceAssembly.self)
+        container.apply(LocationServiceAssembly.self)
+        container.apply(WeatherDataServiceAssembly.self)
+        container.apply(StorageServiceAssembly.self)
         
         
         return container
