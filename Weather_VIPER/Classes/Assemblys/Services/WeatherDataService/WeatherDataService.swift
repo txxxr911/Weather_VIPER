@@ -17,11 +17,11 @@ class WeatherDataService: WeatherDataServiceType {
     
     
     
-    func getWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping (DecodeWeatherData) -> Void) {
+    func getWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping ((DecodeWeatherData) -> Void)) {
+        self.didGetWeatherData = didGetWeatherData
         print("weatherDataService get request and start working")
         
         var decodeWeatherData = DecodeWeatherData()
-        self.didGetWeatherData = didGetWeatherData
         let session = URLSession.shared
         let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(coordinate.latitude.description)&lon=\(coordinate.longtitude.description)&appid=7ecd06499c4370fe484ef26aff81cc5c&units=metric&lang=ru")!
         let request = session.dataTask(with: url) { (data, response, error) in
@@ -37,6 +37,8 @@ class WeatherDataService: WeatherDataServiceType {
                 decodeWeatherData.weatherDescription = DataSource.weatherIDs[weatherData.weather[0].id]!
                 self.correctCity(coordinate: coordinate) { b in
                     decodeWeatherData.cityName = b.local_names.ru
+                    
+                    self.didGetWeatherData?(decodeWeatherData)
                 }
 
             } catch  {
@@ -45,7 +47,7 @@ class WeatherDataService: WeatherDataServiceType {
         }
         request.resume()
         
-        didGetWeatherData(decodeWeatherData)
+
         
         print("weatherDataService send responce")
       
@@ -63,7 +65,7 @@ class WeatherDataService: WeatherDataServiceType {
         }
             do {
                 let rightData: [CorrectCity] = try JSONDecoder().decode([CorrectCity].self, from: data!)
-                didGetCorrectCity(rightData[0])
+                self.didGetCorrectCity?(rightData[0])
             } catch  {
                 print(error)
             }

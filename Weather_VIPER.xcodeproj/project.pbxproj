@@ -822,9 +822,9 @@
 		3751025027D509C300611FDF /* LocationService */ = {
 			isa = PBXGroup;
 			children = (
+				3751025327D509C300611FDF /* LocationService.swift */,
 				3751025127D509C300611FDF /* LocationServiceType.swift */,
 				3751025227D509C300611FDF /* LocationServiceAssembly.swift */,
-				3751025327D509C300611FDF /* LocationService.swift */,
 				3751025727D50A4700611FDF /* Coordinate.swift */,
 			);
 			path = LocationService;
