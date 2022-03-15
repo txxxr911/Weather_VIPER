@@ -27,10 +27,8 @@ extension MainPresenter: MainModuleInput {
 extension MainPresenter: MainViewOutput {
     
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void) {
-        print ("presenter get request and send to interactor")
         interactor.viewDidLoad { b in
             updateUI(b)
-            print ("presenter send responce")
         } saveData: {
             
         }

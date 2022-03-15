@@ -45,12 +45,11 @@ class MainViewController: UIViewController, MainViewInput {
 
     }
     func start() {
-        print("View send request")
         output.viewDidLoad { weatherData in
             DispatchQueue.main.sync {
                 self.cityName.text = weatherData.cityName
                 self.weatherIcon.image = UIImage(named: weatherData.weatherIcon)
-                self.temperatureLabel.text = weatherData.temperature
+                self.temperatureLabel.text = "\(weatherData.temperature) ºC"
                 self.weatherDescription.text = weatherData.weatherDescription
             }
             

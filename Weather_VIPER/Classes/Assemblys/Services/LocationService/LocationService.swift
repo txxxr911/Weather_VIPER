@@ -23,13 +23,11 @@ class LocationService: NSObject, LocationServiceType, CLLocationManagerDelegate 
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             locationManager.pausesLocationUpdatesAutomatically = true
             locationManager.startUpdatingLocation()
-            print ("Location manager has been started")
             
         }
     }
     
     func getCoordinate(didGetCoordinate : @escaping ((Coordinate) -> Void)) {
-        print("location service get request and start working")
         self.didGetCoordinate = didGetCoordinate
             self.startLocationManager()
         
@@ -41,10 +39,10 @@ class LocationService: NSObject, LocationServiceType, CLLocationManagerDelegate 
         if let currentLocation = locations.last {
             print (currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
                 let currentCoordinate: Coordinate = Coordinate(latitude: currentLocation.coordinate.latitude, longtitude: currentLocation.coordinate.longitude)
-            print("location service send responce")
+            locationManager.stopUpdatingLocation()
             didGetCoordinate?(currentCoordinate)
             didGetCoordinate = nil
-            locationManager.stopUpdatingLocation()
+
         }
     }
     

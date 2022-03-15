@@ -21,13 +21,8 @@ class MainInteractor: MainInteractorInput {
     }
     
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void,  saveData: @escaping () -> Void) {
-        print ("interactor get request and send it to services")
         locationService.getCoordinate { c in
-            print("\(c.latitude) and \(c.longtitude)")
-            print("to weatherdataservice")
             self.weatherDataService.getWeatherData(coordinate: c) { weatherData in
-                print ("de data \(weatherData.cityName) \(weatherData.weatherIcon) \(weatherData.temperature) \(weatherData.weatherDescription)")
-                print("to storage")
                 DispatchQueue.main.sync {
                     self.storageService.saveWeatherData(weatherData: weatherData) {
                             saveData()
@@ -38,7 +33,6 @@ class MainInteractor: MainInteractorInput {
                 
             }
         }
-        print ("interactor send responce")
     }
 }
 

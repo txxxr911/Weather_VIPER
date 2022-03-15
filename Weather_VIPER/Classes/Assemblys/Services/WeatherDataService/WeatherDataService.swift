@@ -19,7 +19,6 @@ class WeatherDataService: WeatherDataServiceType {
     
     func getWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping ((DecodeWeatherData) -> Void)) {
         self.didGetWeatherData = didGetWeatherData
-        print("weatherDataService get request and start working")
         
         var decodeWeatherData = DecodeWeatherData()
         let session = URLSession.shared
@@ -32,7 +31,7 @@ class WeatherDataService: WeatherDataServiceType {
             do {
                let weatherData = try JSONDecoder().decode(WeatherData.self, from: data!)
                 decodeWeatherData.weatherIcon = weatherData.weather[0].icon
-                decodeWeatherData.temperature = weatherData.main.temp.description
+                decodeWeatherData.temperature = Int(round(weatherData.main.temp)).description
                 decodeWeatherData.weatherDescription = DataSource.weatherIDs[weatherData.weather[0].id]!
                 self.correctCity(coordinate: coordinate) { b in
                     decodeWeatherData.cityName = b.local_names.ru
@@ -46,11 +45,13 @@ class WeatherDataService: WeatherDataServiceType {
         }
         request.resume()
         
-
-        
-        print("weatherDataService send responce")
       
     }
+    
+    func getWeekWeather() {
+        
+    }
+    
     
     func correctCity(coordinate: Coordinate, didGetCorrectCity: @escaping (CorrectCity) -> Void) {
         self.didGetCorrectCity = didGetCorrectCity

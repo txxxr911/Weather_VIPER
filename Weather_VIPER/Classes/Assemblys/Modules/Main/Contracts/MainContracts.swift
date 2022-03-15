@@ -25,7 +25,6 @@ protocol MainViewInput: AnyObject {
 
 // View Output
 protocol MainViewOutput: AnyObject {
-    //var currentCoordinate: Coordinate {get}
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void)
     
 }
@@ -33,8 +32,6 @@ protocol MainViewOutput: AnyObject {
 // Interactor
 protocol MainInteractorInput {
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void, saveData: @escaping () -> Void)
-//    var currentCoordinate: Coordinate {get}
-    //var currentWeather: EncodeWeatherData {get}
 
 }
 
