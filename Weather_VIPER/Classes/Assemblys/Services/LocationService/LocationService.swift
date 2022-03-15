@@ -44,9 +44,6 @@ class LocationService: NSObject, LocationServiceType, CLLocationManagerDelegate 
             print("location service send responce")
             didGetCoordinate?(currentCoordinate)
             didGetCoordinate = nil
-            
-                //self.currentCoordinate = didGetCoordinate(currentCoordinate)
-            
             locationManager.stopUpdatingLocation()
         }
     }

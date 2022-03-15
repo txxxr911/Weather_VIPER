@@ -13,42 +13,6 @@ import Foundation
 import CoreLocation
 import Network
 
-//struct Local_Names: Codable{
-//    var ru: String = ""
-//    
-//}
-//
-//struct CorrectCity: Codable{
-//    var name: String = ""
-//    var local_names: Local_Names = Local_Names()
-//}
-
-
-//struct Weather: Codable {
-//    var id: Int
-//    var main: String
-//    var description: String
-//    var icon: String
-//}
-//struct Main: Codable {
-//    var temp: Double = 0.0
-//    var pressure: Int = 0
-//    var humidity: Int = 0
-//    
-//}
-//struct WeatherData: Codable{
-//    var weather: [Weather] = []
-//    var main: Main = Main()
-//    var name: String = ""
-//}
-
-
-//class SavedWeatherData: Object {
-//    @objc dynamic var cityName: String? = ""
-//    @objc dynamic var iconName: String? = ""
-//    @objc dynamic var temperature: String? = ""
-//    @objc dynamic var weatherDescription: String? = ""
-//}
 
 let realm = try! Realm()
 
@@ -76,7 +40,6 @@ class MainViewController: UIViewController, MainViewInput {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //output.viewDidLoad()
         initialize()
         start()
 
@@ -153,12 +116,7 @@ extension MainViewController {
 
 // MARK: View Input
 extension MainViewController {
-//    func set(weatherData: WeatherData) {
-//        weatherDescription.text = DataSource.weatherIDs[weatherData.weather[0].id]
-//        temperatureLabel.text = Int(round(weatherData.main.temp)).description + "º"
-//        weatherIcon.image = UIImage(named: weatherData.weather[0].icon)
-////        self.title = title
-//    }
+
 }
 
 // MARK: Button Action
@@ -166,18 +124,3 @@ extension MainViewController {
     
 }
 
-
-
-//extension MainViewController: CLLocationManagerDelegate{
-//
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let curentLocation = locations.last {
-//            print (curentLocation.coordinate.latitude, curentLocation.coordinate.longitude)
-//            getWeatherInfo(latitude: curentLocation.coordinate.latitude, longtitude: curentLocation.coordinate.longitude)
-//            //setData()
-//        }
-//
-//
-//    }
-//
-//}

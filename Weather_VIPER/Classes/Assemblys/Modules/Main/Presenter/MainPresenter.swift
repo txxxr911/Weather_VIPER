@@ -25,13 +25,6 @@ extension MainPresenter: MainModuleInput {
 
 // MARK: View Output
 extension MainPresenter: MainViewOutput {
-//    var currentCoordinate: Coordinate {
-//        interactor.currentCoordinate
-//    }
-    
-//    var currentWeather: DecodeWeatherData {
-//        interactor.currentWeather
-//    }
     
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void) {
         print ("presenter get request and send to interactor")

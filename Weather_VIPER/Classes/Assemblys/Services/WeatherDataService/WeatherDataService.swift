@@ -30,7 +30,6 @@ class WeatherDataService: WeatherDataServiceType {
             return
         }
             do {
-                //let weatherData: WeatherData
                let weatherData = try JSONDecoder().decode(WeatherData.self, from: data!)
                 decodeWeatherData.weatherIcon = weatherData.weather[0].icon
                 decodeWeatherData.temperature = weatherData.main.temp.description
