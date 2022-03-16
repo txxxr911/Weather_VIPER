@@ -5,6 +5,8 @@
 //  Created by Victor on 07.03.2022.
 //
 
+// Structs for current weather
+
 import Foundation
 
 struct Weather: Codable {
@@ -34,4 +36,25 @@ struct Local_Names: Codable{
 struct CorrectCity: Codable{
     var name: String = ""
     var local_names: Local_Names = Local_Names()
+}
+
+// Structs for week weather
+
+struct WeatherDataForWeek: Codable {
+    var weatherForWeek: [Daily] = []
+}
+
+struct Daily: Codable {
+    var temp: Temp
+    var weather: WeatherWeek
+    
+}
+
+struct Temp: Codable {
+    var max: Double
+    var min: Double
+}
+
+struct WeatherWeek: Codable {
+    var icon: String
 }

@@ -99,6 +99,7 @@
 		3751025527D509C300611FDF /* LocationServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751025227D509C300611FDF /* LocationServiceAssembly.swift */; };
 		3751025627D509C300611FDF /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751025327D509C300611FDF /* LocationService.swift */; };
 		3751025827D50A4700611FDF /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751025727D50A4700611FDF /* Coordinate.swift */; };
+		37AA231E27E1D6E400A166BA /* WeatherDataForWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AA231D27E1D6E400A166BA /* WeatherDataForWeek.swift */; };
 		C5CB116A4D478DEB51D6E19D /* Pods_Weather_VIPERTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B152F1CC26C4C45FFBE8AC45 /* Pods_Weather_VIPERTests.framework */; };
 		F3C5DA40991F25DF48AD9948 /* Pods_Weather_VIPER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5A76D67438B18FA3C2617 /* Pods_Weather_VIPER.framework */; };
 /* End PBXBuildFile section */
@@ -219,6 +220,7 @@
 		3751025227D509C300611FDF /* LocationServiceAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceAssembly.swift; sourceTree = "<group>"; };
 		3751025327D509C300611FDF /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		3751025727D50A4700611FDF /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		37AA231D27E1D6E400A166BA /* WeatherDataForWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataForWeek.swift; sourceTree = "<group>"; };
 		516C9BA86D8464D3D9765490 /* Pods_Weather_VIPER_Weather_VIPERUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_VIPER_Weather_VIPERUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D5A76D67438B18FA3C2617 /* Pods_Weather_VIPER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_VIPER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3F861738C8A9DA99482818C /* Pods-Weather_VIPER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather_VIPER.release.xcconfig"; path = "Target Support Files/Pods-Weather_VIPER/Pods-Weather_VIPER.release.xcconfig"; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				3732E75327D65331001E3DA0 /* WeatherDataService.swift */,
 				3732E75B27D6646B001E3DA0 /* DecodeWeatherData.swift */,
 				3732E75927D65484001E3DA0 /* WeatherData.swift */,
+				37AA231D27E1D6E400A166BA /* WeatherDataForWeek.swift */,
 				3732E75427D65331001E3DA0 /* WeatherDataServiceType.swift */,
 				3732E75527D65331001E3DA0 /* WeatherDataServiceAssembly.swift */,
 				3732E76827DA3F78001E3DA0 /* DataSource.swift */,
@@ -1150,6 +1153,7 @@
 				3743289227D3B264004F3D05 /* WeakContainer.swift in Sources */,
 				3743282C27D3B264004F3D05 /* AppDelegateManager.swift in Sources */,
 				3743288E27D3B264004F3D05 /* StrongBox.swift in Sources */,
+				37AA231E27E1D6E400A166BA /* WeatherDataForWeek.swift in Sources */,
 				3743285927D3B264004F3D05 /* UIColor+Ext.swift in Sources */,
 				3743280E27D3B264004F3D05 /* MainCoordinatorAssembly.swift in Sources */,
 				3743281B27D3B264004F3D05 /* EnvironmentService.swift in Sources */,
