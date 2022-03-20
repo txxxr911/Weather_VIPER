@@ -39,4 +39,5 @@ protocol MainInteractorInput {
 // Router
 protocol MainRouterProtocol: AlertRoutable {
     func dismiss()
+    func showSecondView()
 }
