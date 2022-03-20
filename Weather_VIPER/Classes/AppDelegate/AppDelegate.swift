@@ -20,9 +20,11 @@ class AppDelegate: AppDelegateManager {
         // Setup Coordinators
         container.apply(AppCoordinatorAssembly.self)
         container.apply(MainCoordinatorAssembly.self)
+        container.apply(SecondCoordinatorAssembly.self)
         
         // Setup Modules
         container.apply(MainAssembly.self)
+        container.apply(SecondAssembly.self)
         
         // Setup Services
         container.apply(AppConfigServiceAssembly.self)

@@ -25,6 +25,8 @@ extension MainPresenter: MainModuleInput {
 
 // MARK: View Output
 extension MainPresenter: MainViewOutput {
+   
+    
     
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void) {
         interactor.viewDidLoad { b in
@@ -34,6 +36,11 @@ extension MainPresenter: MainViewOutput {
         }
 
         }
+    
+    func buttonPressed() {
+        router.dismiss()
+    }
+    
     }
 
 

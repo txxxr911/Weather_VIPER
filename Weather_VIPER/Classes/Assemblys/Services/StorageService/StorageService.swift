@@ -23,6 +23,7 @@ class StorageService: StorageServiceType {
             data.iconName = weatherData.weatherIcon
             data.temperature = weatherData.temperature
             data.weatherDescription = weatherData.weatherDescription
+            //data.weatherForWeek = weatherData.weekWeatherData
             realm.add(data)
             
         }

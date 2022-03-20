@@ -9,4 +9,8 @@
 import Foundation
 
 class MainRouter: BaseModuleRouter, MainRouterProtocol {
+
+    func dismiss() {
+        coordinator.completion?()
+    }
 }

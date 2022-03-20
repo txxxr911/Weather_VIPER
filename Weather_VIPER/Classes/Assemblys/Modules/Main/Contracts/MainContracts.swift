@@ -26,6 +26,7 @@ protocol MainViewInput: AnyObject {
 // View Output
 protocol MainViewOutput: AnyObject {
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void)
+    func buttonPressed()
     
 }
 
@@ -37,5 +38,5 @@ protocol MainInteractorInput {
 
 // Router
 protocol MainRouterProtocol: AlertRoutable {
-
+    func dismiss()
 }

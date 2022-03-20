@@ -13,4 +13,5 @@ class SavedWeatherData: Object {
     @objc dynamic var iconName: String? = ""
     @objc dynamic var temperature: String? = ""
     @objc dynamic var weatherDescription: String? = ""
+          //dynamic var weatherForWeek: WeatherDataForWeek? = WeatherDataForWeek()
 }

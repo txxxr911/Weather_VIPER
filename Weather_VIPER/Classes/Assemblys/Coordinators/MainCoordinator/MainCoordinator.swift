@@ -19,3 +19,13 @@ class MainCoordinator: BaseCoordinator, MainCoordinatorType {
         return router.rootViewController!
     }
 }
+
+extension MainCoordinator {
+    
+    func secondViewController() -> UIViewController {
+        let coordinator = container.resolve(SecondCoordinatorAssembly.self).build()
+        self.addChild(coordinator)
+        coordinator.start()
+        return coordinator.toPresent()
+    }
+}

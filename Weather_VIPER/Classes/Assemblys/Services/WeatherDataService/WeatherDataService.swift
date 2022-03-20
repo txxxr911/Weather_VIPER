@@ -16,30 +16,30 @@ class WeatherDataService: WeatherDataServiceType {
     var didGetWeatherForWeek: ((WeatherDataForWeek) -> Void)?
     
     
-    func getWeekWeather(coordinate: Coordinate, didGetWeatherData: @escaping ((WeatherDataForWeek) -> Void)) {
-        self.didGetWeatherForWeek = didGetWeatherData
-        
-        //var decodeWeatherWeekData = WeatherDataForWeek()
-        let session = URLSession.shared
-        let url = URL(string:
-                        "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinate.latitude)&lon=\(coordinate.longtitude)&exclude=hourly,minutely,current,alerts&appid=7abeda366e4002cda136605b3298b4fc&units=metric&lang=ru")!
-        let request = session.dataTask(with: url) { (data, responce, error) in
-            guard error == nil else {
-                print("Data task error: \(error!.localizedDescription)")
-                return
-            }
-            do {
-                let weatherData = try JSONDecoder().decode(WeatherDataForWeek.self, from: data!)
-                
-                self.didGetWeatherForWeek?(weatherData)
-            }
-            catch {
-                print(error)
-            }
-            }
-        request.resume()
-        }
-    
+//    func getWeekWeather(coordinate: Coordinate, didGetWeatherData: @escaping ((WeatherDataForWeek) -> Void)) {
+//        self.didGetWeatherForWeek = didGetWeatherData
+//        
+//        //var decodeWeatherWeekData = WeatherDataForWeek()
+//        let session = URLSession.shared
+//        let url = URL(string:
+//                        "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinate.latitude)&lon=\(coordinate.longtitude)&exclude=hourly,minutely,current,alerts&appid=7abeda366e4002cda136605b3298b4fc&units=metric&lang=ru")!
+//        let request = session.dataTask(with: url) { (data, responce, error) in
+//            guard error == nil else {
+//                print("Data task error: \(error!.localizedDescription)")
+//                return
+//            }
+//            do {
+//                let weatherData = try JSONDecoder().decode(WeatherDataForWeek.self, from: data!)
+//                
+//                self.didGetWeatherForWeek?(weatherData)
+//            }
+//            catch {
+//                print(error)
+//            }
+//            }
+//        request.resume()
+//        }
+//    
     
     
     func getWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping ((DecodeWeatherData) -> Void)) {
@@ -61,13 +61,13 @@ class WeatherDataService: WeatherDataServiceType {
                 self.correctCity(coordinate: coordinate) { data in
                     decodeWeatherData.cityName = data.local_names.ru
                     
-                    //self.didGetWeatherData?(decodeWeatherData)
-                }
-                self.getWeekWeather(coordinate: coordinate) { data in
-                    decodeWeatherData.weekWeatherData = data
-                    
                     self.didGetWeatherData?(decodeWeatherData)
                 }
+//                self.getWeekWeather(coordinate: coordinate) { data in
+//                    decodeWeatherData.weekWeatherData = data
+//
+//                    self.didGetWeatherData?(decodeWeatherData)
+//                }
 
             } catch  {
                 print(error)

@@ -10,6 +10,6 @@ import Foundation
 
 protocol WeatherDataServiceType {
     func getWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping (DecodeWeatherData) -> Void)
-    func getWeekWeather(coordinate: Coordinate, didGetWeatherData: @escaping ((WeatherDataForWeek) -> Void))
+    //func getWeekWeather(coordinate: Coordinate, didGetWeatherData: @escaping ((WeatherDataForWeek) -> Void))
     func correctCity(coordinate: Coordinate, didGetCorrectCity: @escaping (CorrectCity) -> Void)
 }
