@@ -62,6 +62,11 @@ class MainViewController: UIViewController, MainViewInput {
         
     }
     
+    @IBAction func buttonPressed(_sender: UIButton) {
+        print("tapped")
+        output.buttonPressed()
+    }
+    
     
     func initialize() {
         backgroundImage.image = UIImage(named: "backgroundImage")
@@ -119,6 +124,7 @@ class MainViewController: UIViewController, MainViewInput {
             maker.width.equalTo(150)
             maker.height.equalTo(40)
         }
+        weatherForWeekButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
 }
 
@@ -134,8 +140,9 @@ extension MainViewController {
 
 // MARK: Button Action
 extension MainViewController {
-    @IBAction func buttonPressed(_sender: Any?) {
-        output.buttonPressed()
-    }
+//    @IBAction func buttonPressed(_sender: Any?) {
+//        print("tapped")
+//        output.buttonPressed()
+//    }
 }
 

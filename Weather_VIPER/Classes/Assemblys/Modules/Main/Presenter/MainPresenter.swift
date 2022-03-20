@@ -38,7 +38,7 @@ extension MainPresenter: MainViewOutput {
         }
     
     func buttonPressed() {
-        router.dismiss()
+        //router.dismiss()
         router.showSecondView()
     }
     
