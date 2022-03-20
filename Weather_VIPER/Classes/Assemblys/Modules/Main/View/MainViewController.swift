@@ -63,7 +63,6 @@ class MainViewController: UIViewController, MainViewInput {
     }
     
     @IBAction func buttonPressed(_sender: UIButton) {
-        print("tapped")
         output.buttonPressed()
     }
     
