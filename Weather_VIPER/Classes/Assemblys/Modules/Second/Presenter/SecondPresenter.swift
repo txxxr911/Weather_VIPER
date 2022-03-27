@@ -26,7 +26,18 @@ extension SecondPresenter: SecondModuleInput {
 
 // MARK: View Output
 extension SecondPresenter: SecondViewOutput {
-    func viewDidLoad() {
-        view?.set(title: "Second")
+    func showWeekWeather() {
+        
     }
-}
+    
+    
+    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void) {
+        print("Presenter works")
+        interactor.viewDidLoad { data in
+            updateUI(data)
+        } saveData: {
+            
+        }
+                
+        }
+    }

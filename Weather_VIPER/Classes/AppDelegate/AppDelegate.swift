@@ -33,6 +33,8 @@ class AppDelegate: AppDelegateManager {
         container.apply(WeatherDataServiceAssembly.self)
         container.apply(StorageServiceAssembly.self)
         
+        // Setup Manager
+        container.apply(ManagerAssembly.self)
         
         return container
     }()

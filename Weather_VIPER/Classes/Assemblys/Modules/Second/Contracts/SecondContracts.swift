@@ -20,16 +20,19 @@ protocol SecondModuleOutput {
 
 // View Input
 protocol SecondViewInput: class {
-    func set(title: String)
+
 }
 
 // View Output
 protocol SecondViewOutput: class {
-    func viewDidLoad()
+    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void)
+    func showWeekWeather()
 }
 
 // Interactor
 protocol SecondInteractorInput {
+    
+    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void, saveData: @escaping () -> Void)
 }
 
 // Router

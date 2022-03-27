@@ -11,7 +11,7 @@ import UIKit
 typealias SecondModule = Module<SecondModuleInput, SecondModuleOutput>
 
 class SecondAssembly: Assembly {
-    func build(coordinator: CoordinatorType) -> SecondModule {
+    func build(coordinate: Coordinate, coordinator: CoordinatorType) -> SecondModule {
         // View
         let view = SecondViewController.controllerFromStoryboard(.weekWeatherView)
         
@@ -19,8 +19,11 @@ class SecondAssembly: Assembly {
         let weatherDataService = container.resolve(WeatherDataServiceAssembly.self).build()
         let storageService = container.resolve(StorageServiceAssembly.self).build()
         
+        // Manager
+        let manager = container.resolve(ManagerAssembly.self).build()
+        
         // Interactor
-        let interactor = SecondInteractor(weatherDataService: weatherDataService, storageService: storageService)
+        let interactor = SecondInteractor(weatherDataService: weatherDataService, storageService: storageService, coordinate: coordinate, manager: manager)
         
         // Router
         let router = SecondRouter(coordinator: coordinator)

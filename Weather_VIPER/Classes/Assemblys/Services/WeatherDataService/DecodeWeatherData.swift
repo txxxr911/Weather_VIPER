@@ -8,7 +8,6 @@
 import Foundation
 
 struct DecodeWeatherData {
-    var weekWeatherData: WeatherDataForWeek = WeatherDataForWeek()
     var cityName: String = ""
     var weatherIcon: String = ""
     var temperature: String = ""

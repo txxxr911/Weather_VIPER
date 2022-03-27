@@ -13,33 +13,40 @@ class WeatherDataService: WeatherDataServiceType {
     
     var didGetWeatherData: ((DecodeWeatherData) -> Void)?
     var didGetCorrectCity: ((CorrectCity) -> Void)?
-    var didGetWeatherForWeek: ((WeatherDataForWeek) -> Void)?
+    var didGetWeatherForWeek: ((DecodeWeatherDataForWeek) -> Void)?
     
     
-//    func getWeekWeather(coordinate: Coordinate, didGetWeatherData: @escaping ((WeatherDataForWeek) -> Void)) {
-//        self.didGetWeatherForWeek = didGetWeatherData
-//        
-//        //var decodeWeatherWeekData = WeatherDataForWeek()
-//        let session = URLSession.shared
-//        let url = URL(string:
-//                        "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinate.latitude)&lon=\(coordinate.longtitude)&exclude=hourly,minutely,current,alerts&appid=7abeda366e4002cda136605b3298b4fc&units=metric&lang=ru")!
-//        let request = session.dataTask(with: url) { (data, responce, error) in
-//            guard error == nil else {
-//                print("Data task error: \(error!.localizedDescription)")
-//                return
-//            }
-//            do {
-//                let weatherData = try JSONDecoder().decode(WeatherDataForWeek.self, from: data!)
-//                
-//                self.didGetWeatherForWeek?(weatherData)
-//            }
-//            catch {
-//                print(error)
-//            }
-//            }
-//        request.resume()
-//        }
-//    
+    func getWeekWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping ((DecodeWeatherDataForWeek) -> Void)) {
+        self.didGetWeatherForWeek = didGetWeatherData
+        
+        var decodeWeatherWeekData = DecodeWeatherDataForWeek()
+        let session = URLSession.shared
+        let url = URL(string:
+                        "https://api.openweathermap.org/data/2.5/onecall?lat=\(coordinate.latitude)&lon=\(coordinate.longtitude)&exclude=hourly,minutely,current,alerts&appid=7abeda366e4002cda136605b3298b4fc&units=metric&lang=ru")!
+        let request = session.dataTask(with: url) { (data, responce, error) in
+            guard error == nil else {
+                print("Data task error: \(error!.localizedDescription)")
+                return
+            }
+            do {
+                let weatherData = try JSONDecoder().decode(WeatherDataForWeek.self, from: data!)
+                var i = 0
+                while(i<7) {
+                    for item in weatherData.weatherForWeek  {
+                        decodeWeatherWeekData.dailyWeather[i].minTemperature = Int(round( item.temp.min))
+                        decodeWeatherWeekData.dailyWeather[i].maxTemperature = Int(round(item.temp.max))
+                        decodeWeatherWeekData.dailyWeather[i].iconName = item.weather.icon
+                    }
+                }
+                self.didGetWeatherForWeek?(decodeWeatherWeekData)
+        }
+            catch {
+                print(error)
+            }
+            }
+        request.resume()
+        }
+    
     
     
     func getWeatherData(coordinate: Coordinate, didGetWeatherData: @escaping ((DecodeWeatherData) -> Void)) {

@@ -34,7 +34,6 @@ class MainViewController: UIViewController, MainViewInput {
     var weatherForWeekButton = UIButton()
     
     
-    
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void) {
         
     }
@@ -54,8 +53,8 @@ class MainViewController: UIViewController, MainViewInput {
                 self.temperatureLabel.text = "\(weatherData.temperature) ºC"
                 self.weatherDescription.text = weatherData.weatherDescription
             }
-            
         }
+        
         }
     
     func updateView() {

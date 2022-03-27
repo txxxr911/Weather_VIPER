@@ -14,16 +14,20 @@ class MainInteractor: MainInteractorInput {
     let locationService: LocationServiceType
     let storageService: StorageServiceType
     
-    init(locationService: LocationServiceType, weatherDataService: WeatherDataServiceType, storageService: StorageServiceType){
+    var currentCoordinate: Coordinate    
+    init(locationService: LocationServiceType, weatherDataService: WeatherDataServiceType, storageService: StorageServiceType, currentCoordinate: Coordinate){
         self.locationService = locationService
         self.weatherDataService = weatherDataService
         self.storageService = storageService
+        self.currentCoordinate = currentCoordinate
     }
     
+    
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void,  saveData: @escaping () -> Void) {
-        locationService.getCoordinate { c in
+        locationService.getCoordinate { coordinate in
 
-            self.weatherDataService.getWeatherData(coordinate: c) { weatherData in
+            self.currentCoordinate = coordinate
+            self.weatherDataService.getWeatherData(coordinate: coordinate) { weatherData in
                 DispatchQueue.main.sync {
                     self.storageService.saveWeatherData(weatherData: weatherData) {
                             saveData()

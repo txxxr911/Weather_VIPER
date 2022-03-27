@@ -32,6 +32,9 @@ protocol MainViewOutput: AnyObject {
 
 // Interactor
 protocol MainInteractorInput {
+    
+    var currentCoordinate: Coordinate {get set}
+    
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void, saveData: @escaping () -> Void)
 
 }
@@ -39,5 +42,5 @@ protocol MainInteractorInput {
 // Router
 protocol MainRouterProtocol: AlertRoutable {
     func dismiss()
-    func showSecondView()
+    func showSecondView(coordinate: Coordinate)
 }

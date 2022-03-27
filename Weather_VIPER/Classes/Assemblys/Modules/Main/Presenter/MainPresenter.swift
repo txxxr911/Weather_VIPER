@@ -38,8 +38,11 @@ extension MainPresenter: MainViewOutput {
         }
     
     func buttonPressed() {
+        let coordinate = interactor.currentCoordinate
         //router.dismiss()
-        router.showSecondView()
+        //let coordinate = mainInteracor?.currentCoordinate
+        print("Current coordinates: \(coordinate.latitude) , \(coordinate.longtitude)")
+        router.showSecondView(coordinate: coordinate)
     }
     
     }
