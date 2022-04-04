@@ -3,12 +3,12 @@ import Foundation
 // Structs for week weather
 
 struct WeatherDataForWeek: Codable {
-    var weatherForWeek: [Daily] = []
+    var daily: [Daily] = []
 }
 
 struct Daily: Codable {
     var temp: Temp
-    var weather: WeatherWeek
+    var weather: [WeatherWeek] = []
     
 }
 

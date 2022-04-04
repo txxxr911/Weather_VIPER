@@ -12,7 +12,6 @@ struct WeekWeatherData {
 }
 
 struct DayData {
-    var cityName: String = ""
     var dayOfWeek: String = ""
     var minTemperature: Int = 0
     var iconName: String = ""

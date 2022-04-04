@@ -37,7 +37,7 @@ class LocationService: NSObject, LocationServiceType, CLLocationManagerDelegate 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let currentLocation = locations.last {
-            print (currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
+        print (currentLocation.coordinate.latitude, currentLocation.coordinate.longitude)
                 let currentCoordinate: Coordinate = Coordinate(latitude: currentLocation.coordinate.latitude, longtitude: currentLocation.coordinate.longitude)
             locationManager.stopUpdatingLocation()
             didGetCoordinate?(currentCoordinate)

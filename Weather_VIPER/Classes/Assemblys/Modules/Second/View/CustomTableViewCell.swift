@@ -37,13 +37,13 @@ class CustomTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         dayName.frame = CGRect(x: 15, y: 5, width: 100, height: contentView.frame.size.height-10)
+        dayName.font = UIFont(name: "Georgia", size: 15)
         
         minTemperature.frame = CGRect(x: 150, y: 10, width: 40, height: contentView.frame.size.height-10)
         minTemperature.font = UIFont(name: "Georgia", size: 17)
-        
         weatherIcon.frame = CGRect(x: 180, y: 5, width: 40, height: contentView.frame.size.height-10)
         
-        maxTemperature.frame = CGRect(x: 230, y: 0, width: 40, height: contentView.frame.size.height-10)
+        maxTemperature.frame = CGRect(x: 230, y: -5, width: 40, height: contentView.frame.size.height-10)
         maxTemperature.font = UIFont(name: "Georgia", size: 17)
     }
     

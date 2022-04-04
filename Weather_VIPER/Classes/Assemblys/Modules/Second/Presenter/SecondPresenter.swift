@@ -9,7 +9,7 @@
 import Foundation
 
 class SecondPresenter: BasePresenter<SecondInteractorInput, SecondRouterProtocol>, SecondModuleOutput {
-    
+    var weekWeatherData: WeekWeatherData? = nil
     // MARK: - Weak properties
     weak var view: SecondViewInput?
 }
@@ -26,18 +26,16 @@ extension SecondPresenter: SecondModuleInput {
 
 // MARK: View Output
 extension SecondPresenter: SecondViewOutput {
+    
     func showWeekWeather() {
         
     }
     
     
-    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void) {
-        print("Presenter works")
-        interactor.viewDidLoad { data in
-            updateUI(data)
-        } saveData: {
-            
+    func viewDidLoad(didGetData: @escaping () -> Void) {
+        interactor.viewDidLoad {
+            self.weekWeatherData = self.interactor.weekWeatherData
+            didGetData()
         }
-                
         }
-    }
+        }

@@ -33,6 +33,8 @@ struct Local_Names: Codable{
     
 }
 
+// MARK: For CorrectCityMethod
+
 struct CorrectCity: Codable{
     var name: String = ""
     var local_names: Local_Names = Local_Names()

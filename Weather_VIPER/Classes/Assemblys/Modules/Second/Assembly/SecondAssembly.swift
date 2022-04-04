@@ -12,6 +12,8 @@ typealias SecondModule = Module<SecondModuleInput, SecondModuleOutput>
 
 class SecondAssembly: Assembly {
     func build(coordinate: Coordinate, coordinator: CoordinatorType) -> SecondModule {
+        
+        
         // View
         let view = SecondViewController.controllerFromStoryboard(.weekWeatherView)
         
@@ -34,6 +36,8 @@ class SecondAssembly: Assembly {
         // Dependency Setup
         presenter.view = view
         view.output = presenter
+        
+
         
         return Module(view: view, input: presenter, output: presenter)
     }

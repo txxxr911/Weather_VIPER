@@ -25,14 +25,17 @@ protocol SecondViewInput: class {
 
 // View Output
 protocol SecondViewOutput: class {
-    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void)
+    
+    var weekWeatherData: WeekWeatherData? {get}
+    func viewDidLoad(didGetData: @escaping () -> Void)
     func showWeekWeather()
 }
 
 // Interactor
 protocol SecondInteractorInput {
+    var weekWeatherData: WeekWeatherData? {get}
     
-    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void, saveData: @escaping () -> Void)
+    func viewDidLoad(updateUI: @escaping () -> Void)
 }
 
 // Router

@@ -39,8 +39,6 @@ extension MainPresenter: MainViewOutput {
     
     func buttonPressed() {
         let coordinate = interactor.currentCoordinate
-        //router.dismiss()
-        //let coordinate = mainInteracor?.currentCoordinate
         print("Current coordinates: \(coordinate.latitude) , \(coordinate.longtitude)")
         router.showSecondView(coordinate: coordinate)
     }

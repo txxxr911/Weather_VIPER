@@ -14,8 +14,9 @@ class MainInteractor: MainInteractorInput {
     let locationService: LocationServiceType
     let storageService: StorageServiceType
     
-    var currentCoordinate: Coordinate    
-    init(locationService: LocationServiceType, weatherDataService: WeatherDataServiceType, storageService: StorageServiceType, currentCoordinate: Coordinate){
+    var currentCoordinate: Coordinate
+    
+    init(locationService: LocationServiceType, weatherDataService: WeatherDataServiceType, storageService: StorageServiceType, currentCoordinate: Coordinate) {
         self.locationService = locationService
         self.weatherDataService = weatherDataService
         self.storageService = storageService

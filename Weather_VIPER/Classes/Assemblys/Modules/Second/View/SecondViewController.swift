@@ -13,28 +13,30 @@ class SecondViewController: UIViewController, SecondViewInput, UITableViewDataSo
 
     
     var output: SecondViewOutput!
-    
     let idCell = "maiCell"
     
     var backgroundImage = UIImageView()
-    var cityName = UILabel()
     var weatherTable = UITableView()
+    var didGetData: (() -> Void)?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weatherTable.register(CustomTableViewCell.self,
-                              forCellReuseIdentifier: CustomTableViewCell.identifier)
-        weatherTable.delegate = self
-        weatherTable.dataSource = self
-        weatherTable.backgroundColor = UIColor.clear
-        initialize()
-        output.viewDidLoad { data in
+        updateTableView{
+            self.output.viewDidLoad {
+                self.initialize()
+            }
         }
-            
         }
+    func updateTableView (didGetData: @escaping () -> Void) {
+        self.didGetData = didGetData
+        didGetData()
+    }
     
     func initialize() {
         
+        DispatchQueue.main.sync {
+            
         backgroundImage.image = UIImage(named: "backgroundImage")
         view.addSubview(backgroundImage)
         backgroundImage.snp.makeConstraints{maker in
@@ -42,15 +44,6 @@ class SecondViewController: UIViewController, SecondViewInput, UITableViewDataSo
             maker.bottom.equalToSuperview().inset(0)
             maker.left.equalToSuperview().inset(0)
             maker.right.equalToSuperview().inset(0)
-        }
-        
-        cityName.text = "Your city"
-        cityName.font = UIFont(name: "Georgia-Bold", size: 25)
-        view.addSubview(cityName)
-        cityName.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(125)
-            maker.centerX.equalToSuperview()
-            
         }
         
         
@@ -64,6 +57,12 @@ class SecondViewController: UIViewController, SecondViewInput, UITableViewDataSo
         }
         weatherTable.isScrollEnabled = false
         
+        weatherTable.register(CustomTableViewCell.self,
+                              forCellReuseIdentifier: CustomTableViewCell.identifier)
+        weatherTable.delegate = self
+        weatherTable.dataSource = self
+        weatherTable.backgroundColor = UIColor.clear
+    }
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,36 +79,20 @@ extension SecondViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
         let cell = weatherTable.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
-//        output.viewDidLoad { data in
-//            print("and here")
-//            cell.dayName.text = data.weekWeatherData[indexPath.row].dayOfWeek
-//            cell.minTemperature.text = String(data.weekWeatherData[indexPath.row].minTemperature)
-//            cell.maxTemperature.text = String(data.weekWeatherData[indexPath.row].maxTemperature)
-//            cell.weatherIcon.image = UIImage(named: "\(data.weekWeatherData[indexPath.row].iconName)")
-//        }
-        
+        cell.minTemperature.text = output.weekWeatherData?.weekWeatherData[indexPath.row].minTemperature.description
+        cell.maxTemperature.text = output.weekWeatherData?.weekWeatherData[indexPath.row].maxTemperature.description
+        cell.weatherIcon.image = UIImage(named: (output.weekWeatherData?.weekWeatherData[indexPath.row].iconName)!)
+        cell.dayName.text = output.weekWeatherData?.weekWeatherData[indexPath.row].dayOfWeek
         return cell
+        }
     }
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        weatherTable.deselectRow(at: indexPath, animated: false)
-//    }
     
-}
 
 // MARK: View Input
 extension SecondViewController {
-//    func set(title: String) {
-//        //self.title = title
-//    }
-    
-//    func showWeekWeather() {
-//        view.addSubview(weatherTable)
-//    }
 }
 
 // MARK: Button Action

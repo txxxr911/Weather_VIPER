@@ -14,9 +14,6 @@ import CoreLocation
 import Network
 
 
-let realm = try! Realm()
-
-
 class MainViewController: UIViewController, MainViewInput {
     
     

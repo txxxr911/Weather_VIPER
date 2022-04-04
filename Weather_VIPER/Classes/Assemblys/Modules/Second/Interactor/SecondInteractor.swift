@@ -12,7 +12,9 @@ class SecondInteractor: SecondInteractorInput {
     let weatherDataService: WeatherDataServiceType
     let storageService: StorageServiceType
     let coordinate: Coordinate
+    var weekWeatherData: WeekWeatherData? = nil
     let manager: ManagerType
+    
     
     init(weatherDataService: WeatherDataServiceType, storageService: StorageServiceType, coordinate: Coordinate, manager: ManagerType) {
         self.weatherDataService = weatherDataService
@@ -21,11 +23,11 @@ class SecondInteractor: SecondInteractorInput {
         self.manager = manager
     }
     
-    func viewDidLoad(updateUI: @escaping (WeekWeatherData) -> Void,  saveData: @escaping () -> Void) {
-        print("interactor works")
+    func viewDidLoad(updateUI: @escaping () -> Void) {
         weatherDataService.getWeekWeatherData(coordinate: coordinate) { weatherData in
             self.manager.map(data: weatherData) { data in
-                updateUI(data)
+                self.weekWeatherData = data
+                updateUI()
             }
             
         }
