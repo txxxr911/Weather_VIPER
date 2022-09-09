@@ -13,3 +13,4 @@ struct DecodeWeatherData {
     var temperature: String = ""
     var weatherDescription: String = ""
 }
+

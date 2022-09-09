@@ -16,13 +16,18 @@ class MainAssembly: Assembly {
         // View
         let view = MainViewController.controllerFromStoryboard(.main)
         
+        // Entity
+        let coordinate = Coordinate(latitude: 0.0, longtitude: 0.0)
+        
         // Services
         let locationService = container.resolve(LocationServiceAssembly.self).build()
         let weatherDataService = container.resolve(WeatherDataServiceAssembly.self).build()
         let storageService = container.resolve(StorageServiceAssembly.self).build()
         
         // Interactor
-        let interactor = MainInteractor(locationService: locationService, weatherDataService: weatherDataService, storageService: storageService)
+        let interactor = MainInteractor(locationService: locationService, weatherDataService: weatherDataService, storageService: storageService, currentCoordinate: coordinate)
+        
+        
         
         // Router
         let router = MainRouter(coordinator: coordinator)
@@ -30,9 +35,11 @@ class MainAssembly: Assembly {
         // Presenter
         let presenter = MainPresenter(interactor: interactor, router: router)
         
+        
         // Dependency Setup
         presenter.view = view
         view.output = presenter
+        
         
         
         return Module(view: view, input: presenter, output: presenter)

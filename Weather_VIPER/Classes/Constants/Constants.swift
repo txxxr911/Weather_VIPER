@@ -10,6 +10,7 @@ import UIKit
 
 enum Storyboards: String {
     case main = "Main"
+    case weekWeatherView = "Second"
 }
 
 enum Constants {

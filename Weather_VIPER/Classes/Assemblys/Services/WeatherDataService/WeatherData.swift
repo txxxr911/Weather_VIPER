@@ -5,6 +5,8 @@
 //  Created by Victor on 07.03.2022.
 //
 
+// Structs for current weather
+
 import Foundation
 
 struct Weather: Codable {
@@ -31,7 +33,10 @@ struct Local_Names: Codable{
     
 }
 
+// MARK: For CorrectCityMethod
+
 struct CorrectCity: Codable{
     var name: String = ""
     var local_names: Local_Names = Local_Names()
 }
+

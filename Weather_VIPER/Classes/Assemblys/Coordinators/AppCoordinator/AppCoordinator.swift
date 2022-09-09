@@ -54,3 +54,13 @@ extension AppCoordinator {
         
     }
 }
+
+// MARK: WeekWeather Flow
+extension AppCoordinator {
+    func startWeekWeatherFlow() {
+        let coordinator = container.resolve(SecondCoordinatorAssembly.self).build()
+        addChild(coordinator)
+        coordinator.start()
+        self.router.present(coordinator)
+    }
+}

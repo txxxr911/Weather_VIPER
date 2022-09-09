@@ -14,9 +14,6 @@ import CoreLocation
 import Network
 
 
-let realm = try! Realm()
-
-
 class MainViewController: UIViewController, MainViewInput {
     
     
@@ -31,8 +28,9 @@ class MainViewController: UIViewController, MainViewInput {
     var weatherIcon = UIImageView()
     var temperatureLabel = UILabel()
     var weatherDescription = UILabel()
+    var weatherForWeekButton = UIButton()
     
-
+    
     func viewDidLoad(updateUI: @escaping (DecodeWeatherData) -> Void) {
         
     }
@@ -52,12 +50,16 @@ class MainViewController: UIViewController, MainViewInput {
                 self.temperatureLabel.text = "\(weatherData.temperature) ºC"
                 self.weatherDescription.text = weatherData.weatherDescription
             }
-            
         }
+        
         }
     
     func updateView() {
         
+    }
+    
+    @IBAction func buttonPressed(_sender: UIButton) {
+        output.buttonPressed()
     }
     
     
@@ -105,6 +107,19 @@ class MainViewController: UIViewController, MainViewInput {
             maker.top.equalTo(temperatureLabel).inset(50)
             maker.centerX.equalToSuperview()
         }
+        
+        weatherForWeekButton.setTitle("Weather for week", for: .normal)
+        view.addSubview(weatherForWeekButton)
+        weatherForWeekButton.backgroundColor = .systemFill
+        weatherForWeekButton.titleLabel?.font = UIFont(name: "Georgia-Bold", size: 15)
+        weatherForWeekButton.layer.cornerRadius = 10
+        weatherForWeekButton.snp.makeConstraints{maker in
+            maker.top.equalTo(weatherDescription).inset(240)
+            maker.centerX.equalToSuperview()
+            maker.width.equalTo(150)
+            maker.height.equalTo(40)
+        }
+        weatherForWeekButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
 }
 
@@ -120,6 +135,9 @@ extension MainViewController {
 
 // MARK: Button Action
 extension MainViewController {
-    
+//    @IBAction func buttonPressed(_sender: Any?) {
+//        print("tapped")
+//        output.buttonPressed()
+//    }
 }
 
